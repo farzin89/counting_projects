@@ -5,7 +5,7 @@ import numpy as np
 
 # web camera
 cap = cv2.VideoCapture('video.mp4')
-
+count_line_postion = 550
 #Initialize Substractor
 algo = cv2.createBackgroundSubtractorMOG2()
 
@@ -22,13 +22,13 @@ while True:
     dilatada = cv2.morphologyEx(dilat,cv2.MORPH_CLOSE,kernel)
     dilatada = cv2.morphologyEx(dilatada,cv2.MORPH_CLOSE,kernel)
     counterShape = cv2.findContours(dilatada,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-    cv2.imshow('Detecter',dilatada)
 
 
-
+    cv2.line(frame1,(25,count_line_postion),(1200,count_line_postion),(255,127,0),3)
+   # cv2.imshow('Detecter',dilatada)
     cv2.imshow('Video original',frame1)
 
-    if cv2.waitKey(1) == 13:
+    if cv2.waitKey(13) == 13:
         break
 cv2.destroyAllWindows()
 cap.release()
